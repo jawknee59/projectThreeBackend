@@ -43,4 +43,14 @@ router.get('/departments', (req, res, next) => {
     .catch(next)
 })
 
+// SHOW 
+// GET /departments/:id
+router.get('/departments/:id', (req, res, next) => {
+    Department.findById(req.params.id)
+    .then(handle404)
+    .then((department) => res.status(200).json({ department: department.toObject() }))
+    .catch(next)
+})
+
 module.exports = router
+
